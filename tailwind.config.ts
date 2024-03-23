@@ -74,7 +74,12 @@ const config = {
       },
     },
   },
+<<<<<<< HEAD
   plugins: [require("tailwindcss-animate")],
+=======
+  plugins: [require("tailwindcss-animate"), 
+  require('tailwindcss-debug-screens'),],
+>>>>>>> 9c8e643c0648688b2868c763190bcf2c5062e8c9
 } satisfies Config
 
 export default config
