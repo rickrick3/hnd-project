@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "../lib/utils";
 import Sidenavbar from "@/components/Sidebar";
+import TanstackProvider from "./providers/TanstackProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
@@ -13,6 +14,7 @@ export default function RootLayout({
   return (
     <html>
       <body
+      
         className={cn(
           "min-h-screen w-full bg-white text-black flex ",
           inter.className,
@@ -21,12 +23,16 @@ export default function RootLayout({
           }
         )}
       >
+        <TanstackProvider>
         {/* Slide bar*/}
         {/*<p className="border" >Slidebar</p>*/}
         <Sidenavbar />
         {/*main page */}
         <div className="p-8 w-full">{children}</div>
-        
+        <main className="h-screen flex flex-col justify-center items-center">
+         
+        </main>
+        </TanstackProvider>
       </body>
     </html>
   );

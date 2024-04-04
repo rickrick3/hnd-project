@@ -1,168 +1,81 @@
-'use client'
-import { DataTable } from '@/components/DataTable'
-import PageTitle from '@/components/PageTitle'
-import { cn } from '@/lib/utils'
-import { ColumnDef } from '@tanstack/react-table'
-import React from 'react'
-
-type Props = {}
-
-export default function OrderPage({}: Props) {
-  return (
-    <div className="flex flex-col gap-5 w-full">
-      <PageTitle title="Orders " />
-      <DataTable columns={columns} data={data} />
-    </div>
-  )
-} 
 
 
-export const columns: ColumnDef<Payment>[] = [
+import { AvatarDemo } from "@/components/Member";
+import Navigation from "@/components/Navigation";
+import PageTitle from "@/components/PageTitle";
+import SalesCard, { SalesProps } from "@/components/SalesCard";
+import { Button } from "@/components/ui/button";
+import Card2, { CardProps } from "@/components/ui/Card2";
+import { Activity, Utensils , Hospital, Users } from "lucide-react";
+
+import Image from "next/image";
+import Link from "next/link";
+
+
+
+
+const cardData: CardProps[] = [
   {
-    accessorKey: "order",
-    header: "Order",
-
+    label: "Project 1",
+    members: "545,231.89",
+    project: "School management system",
+    icon: Hospital ,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell:({row})=>{
-return <div className={cn("font-medium w-medium px-4 py-4 rounded-lg",{
-"bg-red-200": row.getValue("status") === "pending",
-"bg-orange-200": row.getValue("status") === "processing",
-"bg-green-200": row.getValue("status") === "complete"
-})}
-    >
-    {row.getValue("status")}</div>
-    }
+    label: "Project 2",
+    members: "+2350",
+    project: "Employee management system",
+    icon: Users,
   },
   {
-    accessorKey: "lastOrder",
-    header: "Last Order"
+    label: "Project 3",
+    members: "12,234",
+    project: "Food delivery app",
+    icon: Utensils ,
   },
   {
-    accessorKey: "method",
-    header: "Method"
+    label: "Project 4",
+    members: "+573",
+    project: "E-commerce",
+    icon: Activity,
+    
   },
-
 ];
 
-type Payment = {
-  order:string;
-  status:string;
-  lastOrder: string;
-  method: string;
-};
 
 
-export const data: Payment[] = [
-  {
-    order: "ORD001",
-    status: "pending",
-    lastOrder: "12/06/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD00Z",
-    status: "processing",
-    lastOrder: "12/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD003",
-    status: "complete",
-    lastOrder: "06/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD001",
-    status: "pending",
-    lastOrder: "12/06/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD00Z",
-    status: "processing",
-    lastOrder: "12/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD003",
-    status: "complete",
-    lastOrder: "06/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD001",
-    status: "pending",
-    lastOrder: "12/06/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD00Z",
-    status: "processing",
-    lastOrder: "12/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD003",
-    status: "complete",
-    lastOrder: "06/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD001",
-    status: "pending",
-    lastOrder: "12/06/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD00Z",
-    status: "processing",
-    lastOrder: "12/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD003",
-    status: "complete",
-    lastOrder: "06/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD001",
-    status: "pending",
-    lastOrder: "12/06/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD00Z",
-    status: "processing",
-    lastOrder: "12/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD003",
-    status: "complete",
-    lastOrder: "06/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD001",
-    status: "pending",
-    lastOrder: "12/06/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD00Z",
-    status: "processing",
-    lastOrder: "12/12/2023",
-    method: "credit card",
-  },
-  {
-    order: "ORD003",
-    status: "complete",
-    lastOrder: "06/12/2023",
-    method: "credit card",
-  },
-  // ...
-]
+export default function Home() {
+  return (
+    <div className="flex flex-col gap-8 w-full">
+     <section className="grid grid-cols-2 gap-8 sm:grid-cols-2 xl:grid-cols-2">
+  <div className="col-span-1"><PageTitle title="Projects" /></div>
+  <div className="col-span-1"><Navigation/></div>
+</section>
+<Button className="inline-block">
+  <Link href="/createProject" className="text-sm px-2 py-1 bg-black-500 hover:bg-black-700 text-white font-semibold rounded">
+    Add Project
+  </Link>
+</Button>
+
+
+
+      <section
+        className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all 
+      sm:grid-cols-3 xl: grid-cols-4"
+      >
+        
+        {cardData.map((d, i) => (
+          <Card2
+            key={i}
+            members={d.members}
+            project={d.project}
+            icon={d.icon}
+            label={d.label}
+          />
+        ))},
+        <AvatarDemo />
+      </section>
+    </div>
+    
+  );
+}

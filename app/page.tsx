@@ -1,8 +1,9 @@
 import Barchart from "@/components/barchart";
 import Card, { CardContent, CardProps } from "@/components/Card";
+import Navigation from "@/components/Navigation";
 import PageTitle from "@/components/PageTitle";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
-import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, Folders } from "lucide-react";
 
 import Image from "next/image";
 
@@ -11,22 +12,22 @@ import Image from "next/image";
 
 const cardData: CardProps[] = [
   {
-    label: "Total Revenue",
+    label: "Total Projects",
     amount: "545,231.89",
     discription: "+20.1% from last month",
-    icon: DollarSign,
+    icon: Folders ,
   },
   {
-    label: "Subscription",
+    label: "Total Team Members",
     amount: "+2350",
     discription: "+188.1% from last month",
     icon: Users,
   },
   {
-    label: "Sales",
+    label: "Budget",
     amount: "12,234",
     discription: "+12.1% from last month",
-    icon: CreditCard,
+    icon: DollarSign,
   },
   {
     label: "Active Now",
@@ -61,8 +62,14 @@ const UserSalesData: SalesProps [] = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-5 w-full">
-      <PageTitle title="Dashboard" />
+    <div className="flex flex-col gap-8 w-full">
+     <section className="grid grid-cols-2 gap-8 sm:grid-cols-2 xl:grid-cols-2">
+  <div className="col-span-1"><PageTitle title="Dashboard" /></div>
+  
+  <div className="col-span-1"><Navigation/></div>
+</section>
+      
+
       <section
         className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all 
       sm:grid-cols-2 xl: grid-cols-4"
@@ -76,6 +83,7 @@ export default function Home() {
             label={d.label}
           />
         ))}
+        
       </section>
       <section className=" grid grid-cols-1 gap-4 transition-all lg:grid-cols-2">
         <CardContent>
@@ -86,9 +94,9 @@ export default function Home() {
         </CardContent>
         <CardContent className="flex justify-between gap-4">
           <section>
-            <p>Recent sales</p>
+            <p>Recent transactions</p>
             <p className="text-sm text-gray-400">
-            you made 26 sales in one months
+            you made 26 transactions in one months
             </p>
  
 
@@ -108,5 +116,7 @@ saleAmount={d.saleAmount}
         {/**/}
       </section>
     </div>
+
+
   );
 }

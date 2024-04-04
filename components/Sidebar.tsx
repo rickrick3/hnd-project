@@ -11,6 +11,8 @@ import {
   LayoutDashboard,
   Settings,
   ChevronRight,
+  FolderOpen,
+  Layers3
 } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -47,15 +49,21 @@ export default function Sidenavbar({}: Props) {
             variant: "default",
           },
           {
-            title: "Users",
+            title: "Members",
             href: "/users",
             icon: UsersRound,
             variant: "ghost",
           },
           {
-            title: "Orders",
+            title: "Projects",
             href: "/orders",
-            icon: ShoppingCart,
+            icon: FolderOpen ,
+            variant: "ghost",
+          },
+          {
+            title: "Category",
+            href: "/viewCategory",
+            icon: Layers3,
             variant: "ghost",
           },
           {
