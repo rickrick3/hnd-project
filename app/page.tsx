@@ -1,4 +1,4 @@
-import Barchart from "@/components/barchart";
+
 import Card, { CardContent, CardProps } from "@/components/Card";
 import Navigation from "@/components/Navigation";
 import PageTitle from "@/components/PageTitle";
@@ -90,7 +90,7 @@ export default function Home() {
           <p className="p-4 font-semibold">Overview</p>
 
 
-          <Barchart />
+          
         </CardContent>
         <CardContent className="flex justify-between gap-4">
           <section>

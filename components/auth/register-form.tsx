@@ -1,3 +1,4 @@
+
 "use client";
 
 import CardWrapper from "./card-wrapper";
@@ -10,39 +11,29 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { RegisterSchema } from "@/schema";
+import { LoginSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import zodResolver
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { z } from "zod";
 import { useFormStatus } from "react-dom";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { data } from "@/app/users/page";
 
-const RegisterForm = () => {
-  // const {} =useQuery({
-  //   queryKey: ['adminInfo',{adminName:String}, {adminEmail:String}, {password:String}, {confirmPass:String} ],
-  //   queryFn: async () => {
-  //     const {data} =  await axios.post('/api/auth/users/register',)
-  //     console.log(data);
-  //   }
-  // })
-  const [loading, setLoading] = useState(false);
+const LoginForm = () => {
+    const [loading, setLoading] = useState(false);
+
   const form = useForm({
-    resolver: zodResolver(RegisterSchema),
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
+      nane: "",
       email: "",
-      name: "",
       password: "",
-      confirmPassword: "",
+      confirm_password: ""
     },
   });
 
-  const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
+  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
     setLoading(true);
     console.log(data);
   };
@@ -77,19 +68,6 @@ const RegisterForm = () => {
             />
             <FormField
               control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="John Doe" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
@@ -101,22 +79,9 @@ const RegisterForm = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl>
-                    <Input {...field} type="password" placeholder="******" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
           <Button type="submit" className="w-full" disabled={pending}>
-            {loading ? "Loading..." : "Register"}
+            {loading ? "Loading..." : "Login"}
           </Button>
         </form>
       </Form>
@@ -124,4 +89,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

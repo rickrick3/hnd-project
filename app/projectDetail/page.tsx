@@ -1,5 +1,4 @@
 import Link from "next/link";
-import TodoList from "@/components/ui/toDoList";
 import {
   Activity,
   ArrowUpRight,
@@ -40,6 +39,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import TodoList from "@/components/ui/Todolist";
 
 export default function Dashboard() {
   return (
