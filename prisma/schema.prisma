@@ -56,6 +56,8 @@ model Project {
   expenses      Expense[]
   createdBy     User?     @relation(fields: [userId], references: [id])
   userId        String?
+  startTime   DateTime
+  endTime     DateTime
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
 }

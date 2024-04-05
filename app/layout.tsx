@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 // import "./globals.css";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { cn } from "../lib/utils";
 import Sidenavbar from "@/components/Sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: {
@@ -15,7 +15,6 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen w-full bg-white text-black flex ",
-          inter.className,
           {
             "debug-screens": process.env.NODE_ENV === "development",
           }
