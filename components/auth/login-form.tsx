@@ -1,5 +1,4 @@
 "use client";
-
 import CardWrapper from "./card-wrapper";
 import {
   Form,
@@ -17,11 +16,15 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { z } from "zod";
 import { useFormStatus } from "react-dom";
-import { useState } from "react";
+import { useState , useEffect } from "react";
+// import { useRegister } from "@/hooks/use-register";
+import { useLogin } from "@/hooks/use-login";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
-
+    const {login, isLoginingUser , isSuccess} = useLogin();
+    const router = useRouter()
   const form = useForm({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -30,11 +33,28 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-    setLoading(true);
-    console.log(data);
-  };
-
+  const onSubmit = async(data: z.infer<typeof LoginSchema>) => {
+      // event.preventDefault();
+      setLoading(true);
+      console.log(data);
+      // Simulate API call delay
+      try {
+        await login(email,password);
+        // if (isSuccess) 
+      } catch (error) {
+        console.error("Error occurred during form submission:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+  
+    useEffect(() => {
+      if (isSuccess) {
+        router.push('/dashboard')
+      }
+    }, [isSuccess,router ]);
+  
   const { pending } = useFormStatus();
   return (
     <CardWrapper
@@ -77,7 +97,7 @@ const LoginForm = () => {
               )}
             />
           </div>
-          <Button type="submit" className="w-full" disabled={pending}>
+          <Button type="submit" className="w-full" disabled={isLoginingUser}>
             {loading ? "Loading..." : "Login"}
           </Button>
         </form>

@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import {
   Activity,
@@ -40,8 +41,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import TodoList from "@/components/ui/Todolist";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+  const router = useRouter()
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -119,7 +122,7 @@ export default function Dashboard() {
                 </CardDescription>
               </div>
               <Button asChild size="sm" className="ml-auto gap-1">
-                <Link href="#">
+                <Link href="/projectDetail/project/viewMember/">
                   View All
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
@@ -136,7 +139,7 @@ export default function Dashboard() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow>
+                  <TableRow >
                     <TableCell>
                       <div className="font-medium">Liam Johnson</div>
                       <div className="hidden text-sm text-muted-foreground md:inline">

@@ -3,14 +3,14 @@ import { hash } from 'bcrypt'
 import prisma from "@/lib/prisma";
 
 interface NewUserRequest {
-    username: string;
+    name: string;
     email: string;
     password: string;
 }
 
 interface NewUserResponse {
     id: string;
-    username: string;
+    name: string;
     email: string;
     role: string;
 }
@@ -18,6 +18,7 @@ interface NewUserResponse {
 export const POST = async (req: Request) => {
     // console.log(req)
     const body = (await req.json()) as NewUserRequest;
+    
     console.log("Request Body:", body);
 
     if (!body.password) {
@@ -29,7 +30,7 @@ export const POST = async (req: Request) => {
         const user = await prisma.user.create({
             data: {
                 email: body.email,
-                name: body.username,
+                name: body.name,
                 role: "manager",
                 password: hashedPassword
             },
@@ -45,7 +46,7 @@ export const POST = async (req: Request) => {
             user: {
                 id: user.id,
                 email: user.email,
-                username: user.name,
+                name: user.name,
                 role: user.role
             }
         }, { status: 200 });
